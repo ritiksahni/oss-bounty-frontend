@@ -1,0 +1,19 @@
+.navbar {
+    margin-top: 1vh;
+    margin-left: 32vh;
+    margin-right: 32vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.centerNav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.rightNav {
+    display: flex;
+    align-items: center;
+}
