@@ -24,8 +24,8 @@ function Navbar() {
                     <Flex gap="6" align="center">
                         {navItems.map((item) => {
                             return (
-                                <RadixLink asChild>
-                                    <Link key={item.name} to={item.href}>
+                                <RadixLink asChild key={item.name}>
+                                    <Link to={item.href}>
                                         {item.name}
                                     </Link>
                                 </RadixLink>
@@ -35,7 +35,7 @@ function Navbar() {
                 </div>
 
                 <div className={styles.rightNav}>
-                    <Button variant="solid">Sign Up</Button>
+                    <Button variant="soft">Sign Up</Button>
                 </div>
             </nav>
         </>
