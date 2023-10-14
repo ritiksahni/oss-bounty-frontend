@@ -1,12 +1,9 @@
-import { Theme } from '@radix-ui/themes';
-import '@radix-ui/themes/styles.css';
-import Navbar from './components/Navbar';
+import './css/App.css';
+import Layout from './Layout';
 
 function App() {
   return (
-    <Theme accentColor="jade">
-      <Navbar />
-    </Theme>
+      <Layout />
   );
 }
 
