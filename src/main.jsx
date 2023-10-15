@@ -27,10 +27,26 @@ const router = createBrowserRouter([
 const auth0Domain = process.env.REACT_APP_AUTH0_DOMAIN;
 const auth0ClientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
 
+const onRedirectCallback = (appState) => {
+  history.push(
+    appState && appState.returnTo ? appState.returnTo : window.location.pathname
+  );
+};
+
+const providerConfig = {
+  domain: auth0Domain,
+  clientId: auth0ClientId,
+  onRedirectCallback,
+  authorizationParams: {
+    redirect_uri: 'http://localhost:3000',
+    ...(process.env.audience ? { audience: process.env.audience } : null),
+  },
+};
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Theme accentColor="jade">
-        <Auth0Provider domain={auth0Domain} clientId={auth0ClientId} authorizationParams={{ redirect_uri: window.location.origin }}>
+        <Auth0Provider {...providerConfig}>
           <RouterProvider router={router}>
             <QueryClientProvider client={queryClient}>
               <App />

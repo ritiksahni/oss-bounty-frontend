@@ -13,6 +13,13 @@ function Navbar() {
         { name: 'Bounties', href: '/bounties'},
     ]
 
+    const logoutWithRedirect = () =>
+    logout({
+        logoutParams: {
+          returnTo: 'http://localhost:3000/',
+        }
+    });
+
     return (
         <>
             <nav className={styles.navbar}>
@@ -37,9 +44,8 @@ function Navbar() {
                         })}
                     </Flex>
                 </div>
-
                 <div className={styles.rightNav}>
-                    {isAuthenticated ? <Button variant="soft" onClick={() => loginWithRedirect()}>Sign In</Button> : <Button variant="soft" onClick={() => logout({ logoutParams: { returnTo: window.location.origin }})}>Logout</Button>}
+                    {isAuthenticated ? <Button variant="soft" onClick={() => logoutWithRedirect()}>Sign Out</Button> : <Button variant="soft" onClick={() => loginWithRedirect()}>Sign In</Button>}
                 </div>
 
             </nav>
