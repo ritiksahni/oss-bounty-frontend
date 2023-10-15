@@ -6,6 +6,7 @@ import { Theme } from '@radix-ui/themes';
 import '@radix-ui/themes/styles.css';
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { Auth0Provider } from '@auth0/auth0-react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import HowItWorks from './pages/HowItWorks.jsx';
@@ -23,14 +24,19 @@ const router = createBrowserRouter([
   }
 ]);
 
+const auth0Domain = process.env.REACT_APP_AUTH0_DOMAIN;
+const auth0ClientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Theme accentColor="jade">
-        <RouterProvider router={router}>
-          <QueryClientProvider client={queryClient}>
+        <Auth0Provider domain={auth0Domain} clientId={auth0ClientId} authorizationParams={{ redirect_uri: window.location.origin }}>
+          <RouterProvider router={router}>
+            <QueryClientProvider client={queryClient}>
               <App />
-          </QueryClientProvider>
-        </RouterProvider>
+            </QueryClientProvider>
+          </RouterProvider>
+        </Auth0Provider>
     </Theme>
   </React.StrictMode>,
 )

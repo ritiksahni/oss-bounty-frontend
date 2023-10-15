@@ -1,9 +1,13 @@
 import { Link as RadixLink, Button, Flex } from '@radix-ui/themes';
 import { RocketIcon } from '@radix-ui/react-icons';
 import { Link } from 'react-router-dom';
+import { useAuth0 } from '@auth0/auth0-react';
 import styles from '../css/Navbar.module.css';
 
+
 function Navbar() {
+    const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
+
     const navItems = [
         { name: 'How it works', href: '/how-it-works' },
         { name: 'Bounties', href: '/bounties'},
@@ -35,8 +39,9 @@ function Navbar() {
                 </div>
 
                 <div className={styles.rightNav}>
-                    <Button variant="soft">Sign Up</Button>
+                    {isAuthenticated ? <Button variant="soft" onClick={() => loginWithRedirect()}>Sign In</Button> : <Button variant="soft" onClick={() => logout({ logoutParams: { returnTo: window.location.origin }})}>Logout</Button>}
                 </div>
+
             </nav>
         </>
     )
