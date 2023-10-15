@@ -28,17 +28,17 @@ const auth0Domain = process.env.REACT_APP_AUTH0_DOMAIN;
 const auth0ClientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
 
 const onRedirectCallback = (appState) => {
-  history.push(
-    appState && appState.returnTo ? appState.returnTo : window.location.pathname
-  );
-};
+  router.navigate(appState?.returnTo || window.location.pathname);
+}
 
 const providerConfig = {
   domain: auth0Domain,
   clientId: auth0ClientId,
   onRedirectCallback,
+  useRefreshTokens: true,
+  cacheLocation: 'localstorage',
   authorizationParams: {
-    redirect_uri: 'http://localhost:3000',
+    redirect_uri: window.location.origin,
     ...(process.env.audience ? { audience: process.env.audience } : null),
   },
 };

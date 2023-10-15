@@ -16,7 +16,7 @@ function Navbar() {
     const logoutWithRedirect = () =>
     logout({
         logoutParams: {
-          returnTo: 'http://localhost:3000/',
+          returnTo: 'http://localhost:5173',
         }
     });
 
@@ -44,6 +44,7 @@ function Navbar() {
                         })}
                     </Flex>
                 </div>
+
                 <div className={styles.rightNav}>
                     {isAuthenticated ? <Button variant="soft" onClick={() => logoutWithRedirect()}>Sign Out</Button> : <Button variant="soft" onClick={() => loginWithRedirect()}>Sign In</Button>}
                 </div>
