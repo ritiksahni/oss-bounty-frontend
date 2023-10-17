@@ -11,6 +11,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import HowItWorks from './pages/HowItWorks.jsx';
 import Layout from './Layout.jsx';
+import Dashboard from './pages/Dashboard.jsx';
 
 const queryClient = new QueryClient();
 
@@ -19,7 +20,8 @@ const router = createBrowserRouter([
     path: '/', 
     element: <Layout />,
     children: [
-      { path: '/how-it-works', element: <HowItWorks />}
+      { path: '/how-it-works', element: <HowItWorks />},
+      { path: '/dashboard', element: <Dashboard />}
     ]
   }
 ]);
@@ -47,11 +49,11 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Theme accentColor="jade">
         <Auth0Provider {...providerConfig}>
-          <RouterProvider router={router}>
-            <QueryClientProvider client={queryClient}>
+          <QueryClientProvider client={queryClient}>
+            <RouterProvider router={router}>
               <App />
-            </QueryClientProvider>
-          </RouterProvider>
+            </RouterProvider>
+          </QueryClientProvider>
         </Auth0Provider>
     </Theme>
   </React.StrictMode>,

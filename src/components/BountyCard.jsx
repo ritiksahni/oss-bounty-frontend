@@ -1,6 +1,6 @@
 import styles from '../css/BountyCard.module.css';
 
-const BountyCard = ({ data }) => {
+const BountyCard = ({ bountyData }) => {
   return (
     <div className={styles.card}>
       <img
@@ -10,10 +10,10 @@ const BountyCard = ({ data }) => {
       />
       
       <div className={styles.cardContent}>
-        <h2 className={styles.cardTitle}>{data.repoLink}</h2>
-        <h4 className={styles.cardAmt}>{data.bounty_amount}</h4>
+        <h2 className={styles.cardTitle}>{bountyData.repoLink}</h2>
+        <h4 className={styles.cardAmt}>{bountyData.bounty_amount}</h4>
         <p className={styles.cardText}>
-          {data.issueDescription}
+          {bountyData.issueDescription}
         </p>
       </div>
     </div>

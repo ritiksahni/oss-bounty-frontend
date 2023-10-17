@@ -10,7 +10,7 @@ function Navbar() {
 
     const navItems = [
         { name: 'How it works', href: '/how-it-works' },
-        { name: 'Bounties', href: '/bounties'},
+        { name: 'Bounties', href: '/dashboard'},
     ]
 
     const logoutWithRedirect = () =>
@@ -25,7 +25,7 @@ function Navbar() {
             <nav className={styles.navbar}>
                 <div className={styles.leftNav}>
                     <RadixLink asChild>
-                        <Link to="/">
+                        <Link to="/dashboard">
                             <RocketIcon height={64} width={64} />
                         </Link>
                     </RadixLink>
