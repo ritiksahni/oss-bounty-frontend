@@ -15,13 +15,14 @@ const Dashboard = () => {
 
     const { isLoading, error, data } = useQuery({
         queryKey: ['bounty_id'],
-        queryFn: getBounties
+        queryFn: getBounties,
+        cacheTime: 5000
     });
 
     return (
         <>
             <div className={styles.header}>
-            {isAuthenticated && <h2>Welcome, {user.name}</h2>}
+            {isAuthenticated ? <h2>Welcome, {user.name}</h2> : <h2>Dashboard</h2>}
             {isLoading && <p>Loading...</p>}
             {error && <p>Error: {error.message}</p>}
             </div>
