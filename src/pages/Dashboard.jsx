@@ -23,7 +23,7 @@ const Dashboard = () => {
             <div>
                 {data && data.map((bounty) => {
                     return (
-                        <BountyCard bountyData={bounty} />
+                        <BountyCard key={bounty.bounty_id} bountyData={bounty} />
                     )
                 })}
             </div>
