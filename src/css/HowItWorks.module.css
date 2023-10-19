@@ -1,0 +1,19 @@
+.hiwDiv {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.list {
+    padding: 0px;
+    list-style: decimal;
+}
+
+.sections {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    width: 50%;
+}

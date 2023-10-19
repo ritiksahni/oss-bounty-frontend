@@ -1,21 +1,40 @@
 import { Section, Strong, Text } from '@radix-ui/themes';
+import styles from '../css/HowItWorks.module.css';
 
 function HowItWorks() {
-    return (
-        <div>
-            <h1>How it works</h1>
+    return(
+        <div className={styles.hiwDiv}>
+            <div className={styles.sections}>
+                <Section>
+                    <Text>
+                        <Strong><h2>For contributors</h2></Strong>
+                    </Text>
 
-            <Section>
-            <Text>
-                <Strong>For Organisations</Strong>
-                <h4>OSS Bounty is a platform for organisations to post bounties for open source projects allowing them to get the features they need faster.</h4>
+                    <ul className={styles.list}>
+                        <li>Find a bounty you want to work on.</li>
+                        <li>Read the issue description and the requirements.</li>
+                        <li>Fork the repository and make the changes.</li>
+                        <li>Submit a pull request.</li>
+                        <li>Claim your bounty.</li>
+                    </ul>
+                </Section>
+            </div>
 
-                <Strong>For Developers</Strong>
-                <h4>OSS Bounty is a platform for developers to get paid for working on open source projects. Developers can browse bounties and work on the ones they like and claim the bounty when they are done.</h4>
-            </Text>
-            </Section>
+            <div className={styles.sections}>
+                <Section>
+                    <Text>
+                        <Strong><h2>For bounty creators</h2></Strong>
+                    </Text>
+
+                    <ul className={styles.list}>
+                        <li>Create a bounty.</li>
+                        <li>Wait for a contributor to solve the issue and claim it.</li>
+                        <li>Pay the bounty.</li>
+                    </ul>
+                </Section>
+            </div>
         </div>
-    );
+    )
 };
 
 export default HowItWorks;
