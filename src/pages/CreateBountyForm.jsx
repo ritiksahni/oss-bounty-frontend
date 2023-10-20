@@ -4,6 +4,8 @@ import { useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 
 const CreateBounty = () => {
+    const [repoLink, setRepoLink] = useState('');
+    const [bountyAmount, setBountyAmount] = useState('');
     const [markdown, setMarkdown] = useState('');
 
     const handleMarkdownChange = (event) => {
@@ -14,26 +16,25 @@ const CreateBounty = () => {
     
     const handleCreateBountySubmit = (event) => {
         event.preventDefault();
-        console.log(event);
-        // add handler for API endpoint.
-    }
-
+        // add handler.
+    };
 
     return (
         <Flex
-            direction="column"
-            align="center"
-            justify="center"
-            style={{ height: '100vh' }}
+        direction="column"
+        align="center"
+        justify="center"
+        style={{ height: '100vh' }}
         >
-            <div className='createBountyForm' style={{ maxWidth: '500px', width: '100%' }}>
+            <form id='createBountyForm'>
+            <div style={{ maxWidth: '500px', width: '100%' }}>
                 <TextField.Root style={{ marginBottom: '16px' }}>
 
                 <TextField.Slot>
                     <GitHubLogoIcon />
                 </TextField.Slot>
     
-                <TextField.Input placeholder='Enter Repository URL (e.g. https://github.com/username/repositoryName)' />
+                <TextField.Input placeholder='Enter Repository URL (e.g. https://github.com/username/repositoryName)' value={repoLink} onChange={(event) => {setRepoLink(event.target.value)}}/>
                 </TextField.Root>
 
                 <TextField.Root style={{marginBottom: '16px'}}>
@@ -41,7 +42,7 @@ const CreateBounty = () => {
                     $
                 </TextField.Slot>
 
-                <TextField.Input placeholder='Enter Amount (min. $5)' />
+                <TextField.Input placeholder='Enter Amount (min. $5)' value={bountyAmount} onChange={(event) => {setBountyAmount(event.target.value)}}/>
                 </TextField.Root>
 
 
@@ -56,10 +57,19 @@ const CreateBounty = () => {
                 <Card style={{ marginBottom: '16px', marginTop: '4vh', maxHeight: '50vh', overflowY: 'scroll' }}>
                     <ReactMarkdown>{markdown}</ReactMarkdown>
                 </Card>
-            
-
-                <Button style={{ marginBottom: '16px' }} onClick={handleCreateBountySubmit}>Submit</Button>
             </div>
+            </form>
+
+            <Button
+                as="button"
+                type="submit"
+                form="createBountyForm"
+                variant="solid"
+                style={{ marginBottom: '16px' }}
+                onClick={handleCreateBountySubmit}
+            >
+                Submit
+            </Button>
         </Flex>
     );
 };
