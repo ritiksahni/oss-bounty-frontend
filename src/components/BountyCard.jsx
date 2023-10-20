@@ -14,7 +14,7 @@ const BountyCard = ({ bountyData }) => {
       <Text as="p" size="3">
         <RadixLink asChild><Link to={bountyData.repoLink}>{bountyData.repoLink}</Link></RadixLink>
         <br />
-        <Strong>Amount</Strong>: {bountyData.bounty_amount}
+        <Strong>Amount</Strong>: ${bountyData.bounty_amount}
         <br />
         <Strong>Issue</Strong>: <span className={styles.issueDescription}>{bountyData.issueDescription}</span>
         <br />

@@ -27,3 +27,25 @@
         grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     }
 }
+
+.createBountyIcon {
+    position: fixed;
+    bottom: 100px;
+    right: 75px;
+}
+
+.plusIconWrapper {
+    background-color: #000;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 64px;
+    width: 64px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.plusIconWrapper:hover {
+    background-color: #333;
+}

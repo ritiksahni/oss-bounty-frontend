@@ -1,9 +1,12 @@
 import styles from '../css/Dashboard.module.css';
 import BountyCard from "../components/BountyCard";
 import axios from "axios";
+import { Link } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { Grid, Box } from "@radix-ui/themes";
 import { useAuth0 } from "@auth0/auth0-react";
+import { PlusIcon } from '@radix-ui/react-icons';
+
 
 const Dashboard = () => {
     const { isAuthenticated, user } = useAuth0();
@@ -38,6 +41,14 @@ const Dashboard = () => {
                     })
                 }
             </Grid>
+            </div>
+
+            <div className={styles.createBountyIcon}>
+                <Link to="/create-bounty">
+                    <div className={styles.plusIconWrapper}>
+                        <PlusIcon height={32} width={32} color='white'/>
+                    </div>
+                </Link>
             </div>
         </>
     )
