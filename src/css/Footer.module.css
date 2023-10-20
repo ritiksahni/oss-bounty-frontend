@@ -1,0 +1,40 @@
+.mainContent {
+    margin-bottom: 160px; /* 80px is the height of the footer */
+    min-height: calc(100vh - 160px); /* 80px is the height of the footer */
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #333;
+    color: #fff;
+    padding: 16px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer p {
+    margin: 0;
+}
+
+.footer .menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.footer .menu a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+.footer .menu a:hover {
+    text-decoration: underline;
+}

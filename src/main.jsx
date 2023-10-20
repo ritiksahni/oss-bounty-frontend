@@ -12,6 +12,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import HowItWorks from './pages/HowItWorks.jsx';
 import Layout from './Layout.jsx';
 import Dashboard from './pages/Dashboard.jsx';
+import CreatorCard from './pages/Creator.jsx';
 
 const queryClient = new QueryClient();
 
@@ -21,7 +22,8 @@ const router = createBrowserRouter([
     element: <Layout />,
     children: [
       { path: '/how-it-works', element: <HowItWorks />},
-      { path: '/dashboard', element: <Dashboard />}
+      { path: '/dashboard', element: <Dashboard />},
+      { path: '/creator', element: <CreatorCard />}
     ]
   }
 ]);
