@@ -1,12 +1,5 @@
-.card {
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
-    max-width: auto;
-    margin: auto;
-    background-color: #fff;
-    overflow: hidden;
-    margin-bottom: 20px;
+.cardComponent {
+    max-width: 320px;
 }
 
 .cardImage {
@@ -16,21 +9,10 @@
     object-fit: cover;
 }
 
-.cardContent {
-    padding: 20px;
-}
-
-.cardTitle {
-    font-size: 1rem;
-    margin-bottom: 10px;
-}
-
-.cardAmt {
-    font-size: 1rem;
-    margin-bottom: 10px;
-}
-
-.cardText {
-    font-size: 1rem;
-    color: #555;
+.issueDescription {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
