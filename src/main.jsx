@@ -14,14 +14,16 @@ import Layout from './Layout.jsx';
 import Dashboard from './pages/Dashboard.jsx';
 import CreatorCard from './pages/Creator.jsx';
 import CreateBounty from './pages/CreateBountyForm.jsx';
+import Homepage from './components/Homepage.jsx';
 
 const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
   {
-    path: '/', 
+    path: '/',
     element: <Layout />,
     children: [
+      { path: '/', element: <Homepage />},
       { path: '/how-it-works', element: <HowItWorks />},
       { path: '/dashboard', element: <Dashboard />},
       { path: '/creator', element: <CreatorCard />},

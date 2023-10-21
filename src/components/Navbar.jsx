@@ -25,7 +25,7 @@ function Navbar() {
             <nav className={styles.navbar}>
                 <div className={styles.leftNav}>
                     <RadixLink asChild>
-                        <Link to="/dashboard">
+                        <Link to="/">
                             <RocketIcon height={64} width={64} />
                         </Link>
                     </RadixLink>
