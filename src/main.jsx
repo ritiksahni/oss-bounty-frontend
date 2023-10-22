@@ -47,7 +47,8 @@ const providerConfig = {
   cacheLocation: 'localstorage',
   authorizationParams: {
     redirect_uri: window.location.origin,
-    ...(process.env.audience ? { audience: process.env.audience } : null),
+    scope: 'read:bounties create:bounties',
+    ...(process.env.REACT_APP_AUTH0_AUDIENCE ? { audience: process.env.REACT_APP_AUTH0_AUDIENCE } : null),
   },
 };
 
