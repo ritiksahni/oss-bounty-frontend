@@ -2,34 +2,31 @@ import { GitHubLogoIcon } from '@radix-ui/react-icons';
 import { TextArea, TextField, Card, Button, Flex } from '@radix-ui/themes';
 import { useState } from 'react';
 import ReactMarkdown from 'react-markdown';
-import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react';
 import axios from 'axios';
 
 const CreateBounty = () => {
     const [repoLink, setRepoLink] = useState('');
     const [bountyAmount, setBountyAmount] = useState('');
     const [markdown, setMarkdown] = useState('');
-
-    const { isAuthenticated, loginWithRedirect, getAccessTokenSilently } = useAuth0();
-
+    
     const handleMarkdownChange = (event) => {
         setMarkdown(event.target.value);
     };
 
     const MAX_CHARACTERS = 2000; // Variable for issue description text area input limit.
-    
+
     const handleCreateBountySubmit = async (event) => {
         event.preventDefault();
         try {
             const token = await getAccessTokenSilently();
             const data = {'repoLink': repoLink, 'bounty_amount': bountyAmount, 'issueDescription': markdown};
-            const res = await axios.post(process.env.EXPRESS_SERVER_URL + "/api/add-bounty", data, {
+            await axios.post(process.env.EXPRESS_SERVER_URL + "/api/add-bounty", data, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
-            });
-
-            console.log(res);
+            }).then(res => {
+            })
+            
         } catch(err) {
             console.log(err);
         }

@@ -4,13 +4,10 @@ import axios from "axios";
 import { Link } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { Grid, Box } from "@radix-ui/themes";
-import { useAuth0 } from "@auth0/auth0-react";
 import { PlusIcon } from '@radix-ui/react-icons';
 
 
 const Dashboard = () => {
-    const { isAuthenticated, user } = useAuth0();
-
     const getBounties = async () => {
         const res = await axios.get(process.env.EXPRESS_SERVER_URL + "/api/bounties/");
         return res.data;
@@ -24,11 +21,11 @@ const Dashboard = () => {
 
     return (
         <>
-            <div className={styles.header}>
+            {/* <div className={styles.header}>
             {isAuthenticated ? <h2>Welcome, {user.name}</h2> : <h2>Dashboard</h2>}
             {isLoading && <p>Loading...</p>}
             {error && <p>Error: {error.message}</p>}
-            </div>
+            </div> */}
 
             <div className={styles.grid}>
             <Grid columns={4} gap={3} width="auto" style={{ display: 'flex', flexWrap: 'wrap' }}>

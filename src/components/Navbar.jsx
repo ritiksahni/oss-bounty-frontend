@@ -1,13 +1,11 @@
 import { Link as RadixLink, Button, Flex } from '@radix-ui/themes';
 import { RocketIcon } from '@radix-ui/react-icons';
 import { Link } from 'react-router-dom';
-import { useAuth0 } from '@auth0/auth0-react';
 import styles from '../css/Navbar.module.css';
 
 
 function Navbar() {
-    const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
-
+    const isAuthenticated = false; // CHANGE THIS
     const navItems = [
         { name: 'How it works', href: '/how-it-works' },
         { name: 'Bounties', href: '/dashboard'},
