@@ -21,11 +21,11 @@ const Dashboard = () => {
 
     return (
         <>
-            {/* <div className={styles.header}>
-            {isAuthenticated ? <h2>Welcome, {user.name}</h2> : <h2>Dashboard</h2>}
+            <div className={styles.header}>
+            {/* {isAuthenticated ? <h2>Welcome, {user.name}</h2> : <h2>Dashboard</h2>} */}
             {isLoading && <p>Loading...</p>}
             {error && <p>Error: {error.message}</p>}
-            </div> */}
+            </div>
 
             <div className={styles.grid}>
             <Grid columns={4} gap={3} width="auto" style={{ display: 'flex', flexWrap: 'wrap' }}>

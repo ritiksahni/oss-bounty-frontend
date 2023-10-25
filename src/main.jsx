@@ -31,10 +31,6 @@ const router = createBrowserRouter([
   }
 ]);
 
-const onRedirectCallback = (appState) => {
-  router.navigate(appState?.returnTo || window.location.pathname);
-}
-
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Theme accentColor="jade">

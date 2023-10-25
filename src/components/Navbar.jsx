@@ -11,13 +11,6 @@ function Navbar() {
         { name: 'Bounties', href: '/dashboard'},
     ]
 
-    const logoutWithRedirect = () =>
-    logout({
-        logoutParams: {
-          returnTo: 'http://localhost:5173',
-        }
-    });
-
     return (
         <>
             <nav className={styles.navbar}>
