@@ -32,66 +32,60 @@ const CreateBounty = () => {
         }
     };
 
-    if (isAuthenticated) {
-        return (
-            <Flex
-            direction="column"
-            align="center"
-            justify="center"
-            style={{ height: '100vh' }}
+    return (
+        <Flex
+        direction="column"
+        align="center"
+        justify="center"
+        style={{ height: '100vh' }}
+        >
+            <form id='createBountyForm'>
+            <div style={{ maxWidth: '100vw', width: '75vw' }}>
+                <TextField.Root style={{ marginBottom: '16px' }}>
+
+                <TextField.Slot>
+                    <GitHubLogoIcon />
+                </TextField.Slot>
+    
+                <TextField.Input placeholder='Enter Repository URL (e.g. https://github.com/username/repositoryName)' value={repoLink} onChange={(event) => {setRepoLink(event.target.value)}}/>
+                </TextField.Root>
+
+                <TextField.Root style={{marginBottom: '16px'}}>
+                <TextField.Slot>
+                    $
+                </TextField.Slot>
+
+                <TextField.Input placeholder='Enter Amount (min. $5)' value={bountyAmount} onChange={(event) => {setBountyAmount(event.target.value)}}/>
+                </TextField.Root>
+
+
+                <TextArea
+                    value={markdown}
+                    onChange={handleMarkdownChange}
+                    placeholder={`Enter Issue Description (in markdown format, max ${MAX_CHARACTERS} characters)`}
+                    maxLength={MAX_CHARACTERS}
+                    style={{ height: '200px', overflowY: 'scroll', marginBottom: '16px' }}
+                />
+
+                <Card style={{marginTop: '4vh', overflowY: 'scroll', overflow: 'hidden' }}>
+                    <ReactMarkdown>{markdown}</ReactMarkdown>
+                </Card>
+                
+            </div>
+            </form>
+
+            <Button
+                as="button"
+                type="submit"
+                form="createBountyForm"
+                variant="solid"
+                style={{ marginBottom: '16px' }}
+                onClick={handleCreateBountySubmit}
             >
-                <form id='createBountyForm'>
-                <div style={{ maxWidth: '100vw', width: '75vw' }}>
-                    <TextField.Root style={{ marginBottom: '16px' }}>
-    
-                    <TextField.Slot>
-                        <GitHubLogoIcon />
-                    </TextField.Slot>
-        
-                    <TextField.Input placeholder='Enter Repository URL (e.g. https://github.com/username/repositoryName)' value={repoLink} onChange={(event) => {setRepoLink(event.target.value)}}/>
-                    </TextField.Root>
-    
-                    <TextField.Root style={{marginBottom: '16px'}}>
-                    <TextField.Slot>
-                        $
-                    </TextField.Slot>
-    
-                    <TextField.Input placeholder='Enter Amount (min. $5)' value={bountyAmount} onChange={(event) => {setBountyAmount(event.target.value)}}/>
-                    </TextField.Root>
-    
-    
-                    <TextArea
-                        value={markdown}
-                        onChange={handleMarkdownChange}
-                        placeholder={`Enter Issue Description (in markdown format, max ${MAX_CHARACTERS} characters)`}
-                        maxLength={MAX_CHARACTERS}
-                        style={{ height: '200px', overflowY: 'scroll', marginBottom: '16px' }}
-                    />
-    
-                    <Card style={{marginTop: '4vh', overflowY: 'scroll', overflow: 'hidden' }}>
-                        <ReactMarkdown>{markdown}</ReactMarkdown>
-                    </Card>
-                    
-                </div>
-                </form>
-    
-                <Button
-                    as="button"
-                    type="submit"
-                    form="createBountyForm"
-                    variant="solid"
-                    style={{ marginBottom: '16px' }}
-                    onClick={handleCreateBountySubmit}
-                >
-                    Submit
-                </Button>
-            </Flex>
-        );
-    } else {
-        { loginWithRedirect() }
-    }
-
-
+                Submit
+            </Button>
+        </Flex>
+    );
 };
 
-export default withAuthenticationRequired(CreateBounty);
+export default CreateBounty;
