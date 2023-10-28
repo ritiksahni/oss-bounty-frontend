@@ -1,6 +1,7 @@
 import { Link as RadixLink, Button, Flex } from '@radix-ui/themes';
 import { RocketIcon } from '@radix-ui/react-icons';
 import { Link } from 'react-router-dom';
+import { login } from '../utils/Auth';
 import styles from '../css/Navbar.module.css';
 
 
@@ -37,7 +38,7 @@ function Navbar() {
                 </div>
 
                 <div className={styles.rightNav}>
-                    {isAuthenticated ? <Button variant="soft" onClick={() => logoutWithRedirect()}>Sign Out</Button> : <Button variant="soft" onClick={() => loginWithRedirect()}>Sign In</Button>}
+                    {isAuthenticated ? <Button variant="soft" onClick={() => logoutWithRedirect()}>Sign Out</Button> : <Button variant="soft" onClick={() => login()}>Sign In</Button>}
                 </div>
 
             </nav>

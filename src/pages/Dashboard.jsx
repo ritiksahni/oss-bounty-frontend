@@ -6,7 +6,6 @@ import { useQuery } from '@tanstack/react-query';
 import { Grid, Box } from "@radix-ui/themes";
 import { PlusIcon } from '@radix-ui/react-icons';
 
-
 const Dashboard = () => {
     const getBounties = async () => {
         const res = await axios.get(process.env.EXPRESS_SERVER_URL + "/api/bounties/");
