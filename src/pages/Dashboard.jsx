@@ -27,16 +27,15 @@ const Dashboard = () => {
             </div>
 
             <div className={styles.grid}>
-            <Grid columns={4} gap={3} width="auto" style={{ display: 'flex', flexWrap: 'wrap' }}>
-                {data && data.map((bounty) => {
-                    return (
-                        <Box key={bounty.bounty_id} style={{ flex: '1 0 25%' }}>
-                        <BountyCard bountyData={bounty}/>
-                        </Box>
+                <Grid columns={4} gap={3} width="auto" style={{ display: 'flex', flexWrap: 'wrap' }}>
+                    {data && data.map((bounty) => {
+                        return (
+                            <Box key={bounty.bounty_id} style={{ flex: '1 0 10% 10%', breakInside: 'avoid', margin: '28px' }}>
+                                <BountyCard bountyData={bounty}/>
+                            </Box>
                         )
-                    })
-                }
-            </Grid>
+                    })}
+                </Grid>
             </div>
 
             <div className={styles.createBountyIcon}>

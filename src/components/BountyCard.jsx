@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const BountyCard = ({ bountyData }) => {
   return (
-    <Card size="3" className={styles.cardComponent}>
+    <Card size="1" className={styles.cardComponent}>
       <Inset clip="padding-box" side="top" pb="current">
         <Link to={bountyData.repoLink} target="_blank">
           <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt={bountyData.repoLink} className={styles.cardImage} />
