@@ -6,7 +6,7 @@ import { useQuery } from '@tanstack/react-query';
 import { Grid, Box } from "@radix-ui/themes";
 import { PlusIcon } from '@radix-ui/react-icons';
 
-const Dashboard = () => {
+const Dashboard = () => {    
     const getBounties = async () => {
         const res = await axios.get(process.env.EXPRESS_SERVER_URL + "/api/bounties/");
         return res.data;
@@ -21,7 +21,7 @@ const Dashboard = () => {
     return (
         <>
             <div className={styles.header}>
-            {/* {isAuthenticated ? <h2>Welcome, {user.name}</h2> : <h2>Dashboard</h2>} */}
+            {isLoggedIn ? <h2>Welcome, {user}</h2> : <h2>Dashboard</h2>}
             {isLoading && <p>Loading...</p>}
             {error && <p>Error: {error.message}</p>}
             </div>
