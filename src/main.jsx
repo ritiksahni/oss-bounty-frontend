@@ -14,7 +14,6 @@ import Dashboard from './pages/Dashboard.jsx';
 import CreatorCard from './pages/Creator.jsx';
 import CreateBounty from './pages/CreateBountyForm.jsx';
 import Homepage from './components/Homepage.jsx';
-import { AuthContextProvider } from './contexts/AuthContext.jsx';
 
 const queryClient = new QueryClient();
 
@@ -37,9 +36,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <Theme accentColor="jade">
           <QueryClientProvider client={queryClient}>
             <RouterProvider router={router}>
-              <AuthContextProvider>
                 <App />
-              </AuthContextProvider>
             </RouterProvider>
           </QueryClientProvider>
       </Theme>

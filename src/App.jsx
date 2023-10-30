@@ -1,18 +1,18 @@
 import './css/App.css';
 import Layout from './Layout';
+import AuthContext from './contexts/AuthContext';
 import { useState } from 'react';
-import { AuthContextProvider } from './contexts/AuthContext';
 
 function App() {
   const [user, setUser] = useState({});
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const value = { user, isLoggedIn, setUser, setIsLoggedIn };
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
+  setIsAuthenticated(true);
   return (
       <>
-      <AuthContextProvider value={value}>
+      <AuthContext.Provider value={{ user, setUser, isAuthenticated, setIsAuthenticated }}>
         <Layout />
-      </AuthContextProvider>
+      </AuthContext.Provider>
       </>
   );
 }
