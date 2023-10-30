@@ -1,22 +1,11 @@
-import { createContext, useEffect, useState } from 'react';
-import { useQuery } from '@tanstack/react-query';
-import axios from 'axios';
+import { createContext } from 'react';
+const AuthContext = createContext(null);
 
-const AuthContext = createContext()
-
-const checkAuth = async () => {
-    const res = await axios.get(process.env.EXPRESS_SERVER_URL + "/api/auth/getUser");
-    return res.data;
-}
-
-const authQuery = useQuery({
-    queryKey: ['user_id'],
-    queryFn: checkAuth,
-    cacheTime: 5000
-});
 
 const AuthContextProvider = ({ children }) => {
-    <AuthContext.Provider value={authQuery}>
+    <AuthContext.Provider value={{}}>
         {children}
     </AuthContext.Provider>
 }
+
+export { AuthContextProvider, AuthContext };
