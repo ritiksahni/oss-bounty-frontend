@@ -1,4 +1,3 @@
-import { Outlet } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
@@ -7,7 +6,7 @@ function Layout({ children }) {
     <div className="layout">
       <Navbar />
       <main>
-        <Outlet />
+        {children}
       </main>
       <Footer />
     </div>
