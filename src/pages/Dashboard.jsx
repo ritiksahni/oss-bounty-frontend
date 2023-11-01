@@ -5,11 +5,29 @@ import { Link } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { Grid, Box } from "@radix-ui/themes";
 import { PlusIcon } from '@radix-ui/react-icons';
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import AuthContext from '../contexts/AuthContext';
 
 const Dashboard = () => {    
-    const { isAuthenticated } = useContext(AuthContext);
+    const { isAuthenticated, user, setIsAuthenticated, setUser } = useContext(AuthContext);
+
+    useEffect(() => {
+        const fetchUser = async () => {
+            try {
+                if(!user && !isAuthenticated){
+                    const response = await axios.get(process.env.EXPRESS_SERVER_URL + "/api/auth/user", { withCredentials: true });
+                    if(!response.data.user === null){ // If user is not logged in, server responds with { user: null } else { user: { ... } }
+                        setUser(response.data.user[0]);
+                        setIsAuthenticated(true);
+                    }
+                }
+            } catch (error) {
+                console.error(error);
+            }
+        };
+
+        fetchUser();
+    }, []);
 
     const getBounties = async () => {
         const res = await axios.get(process.env.EXPRESS_SERVER_URL + "/api/bounties/");
@@ -25,7 +43,7 @@ const Dashboard = () => {
     return (
         <>
             <div className={styles.header}>
-            {isAuthenticated ? <h2>Welcome, user</h2> : <h2>Dashboard</h2>}
+            {isAuthenticated ? <h2>Welcome, {user.username}</h2> : <h2>Dashboard</h2>}
             {isLoading && <p>Loading...</p>}
             {error && <p>Error: {error.message}</p>}
             </div>
@@ -54,19 +72,3 @@ const Dashboard = () => {
 }
 
 export default Dashboard;
-
-// Dummy Data
-
-/*
-
-const data = {
-    "bounty_id": 56,
-    "repoLink": "https://github.com/user1/repo1",
-    "issueDescription": "Fix issue #123",
-    "isApproved": 0,
-    "user_id": "user1",
-    "bounty_amount": 50,
-    "approved_claim_id": 4
-};
-
-*/

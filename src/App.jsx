@@ -11,7 +11,7 @@ import CreateBounty from './pages/CreateBountyForm.jsx';
 import Homepage from './components/Homepage';
 
 function App() {
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   
   return (
