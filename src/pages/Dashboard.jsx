@@ -50,7 +50,7 @@ const Dashboard = () => {
 
             <div className={styles.grid}>
                 <Grid columns={4} gap={3} width="auto" style={{ display: 'flex', flexWrap: 'wrap' }}>
-                    {data && data.map((bounty) => {
+                    {Array.isArray(data) && data && data.map((bounty) => {
                         return (
                             <Box key={bounty.bounty_id} style={{ flex: '1 0 10% 10%', breakInside: 'avoid', margin: '28px' }}>
                                 <BountyCard bountyData={bounty}/>
