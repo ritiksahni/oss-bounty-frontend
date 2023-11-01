@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { Grid, Box } from "@radix-ui/themes";
 import { PlusIcon } from '@radix-ui/react-icons';
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect } from 'react';
 import AuthContext from '../contexts/AuthContext';
 
 const Dashboard = () => {    
@@ -16,7 +16,7 @@ const Dashboard = () => {
             try {
                 if(!user && !isAuthenticated){
                     const response = await axios.get(process.env.EXPRESS_SERVER_URL + "/api/auth/user", { withCredentials: true });
-                    if(!response.data.user === null){ // If user is not logged in, server responds with { user: null } else { user: { ... } }
+                    if(response.data.user !== null){ // If user is not logged in, server responds with { user: null } else { user: { ... } }
                         setUser(response.data.user[0]);
                         setIsAuthenticated(true);
                     }

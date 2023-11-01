@@ -9,6 +9,7 @@ import Dashboard from './pages/Dashboard.jsx';
 import CreatorCard from './pages/Creator.jsx';
 import CreateBounty from './pages/CreateBountyForm.jsx';
 import Homepage from './components/Homepage';
+import BountyPage from './components/BountyPage';
 
 function App() {
   const [user, setUser] = useState();
@@ -22,6 +23,7 @@ function App() {
             <Route path="/" element={<Homepage />} />
             <Route path="/how-it-works" element={<HowItWorks />} />
             <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/bounty/:id" element={<BountyPage />} />
             <Route path="/creator" element={<CreatorCard />} />
             <Route path="/create-bounty" element={<CreateBounty />} />
           </Routes>
