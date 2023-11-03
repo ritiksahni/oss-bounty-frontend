@@ -18,7 +18,9 @@ const Dashboard = () => {
                 if(!user && !isAuthenticated){
                     const response = await axios.get(process.env.EXPRESS_SERVER_URL + "/api/auth/user", { withCredentials: true });
                     if(response.data.user !== null){ // If user is not logged in, server responds with { user: null } else { user: { ... } }
-                        setUser(response.data.user[0]);
+                        const userData = response.data.user[0];
+                        userData.user_id = `github|` + userData.user_id;
+                        setUser(userData);
                         setIsAuthenticated(true);
                     } else {
                         setRedirect(true);

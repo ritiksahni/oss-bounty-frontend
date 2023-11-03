@@ -1,8 +1,13 @@
 import axios from 'axios';
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
+import { useContext, useState } from 'react';
+import { Card, Text, Heading, Link, Flex, Grid, Button  } from '@radix-ui/themes';
+import AuthContext from '../contexts/AuthContext';
 
 function BountyPage() {
+    const navigate = useNavigate();
+    const { user } = useContext(AuthContext);
     const { id } = useParams();
 
     async function getBountyById(){
@@ -17,20 +22,46 @@ function BountyPage() {
     });
 
     return(
-        <div>
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
             {isLoading && <p>Loading...</p>}
             {error && <p>Error: {error.message}</p>}
             
             {data && (
-                <div>
-                    <h1>Bounty Details for bounty ID: {id}</h1>
-                    <p>{data.issueDescription}</p>
-                    <p>{data.bounty_amount}</p>
-                    <a href={data.repoLink}>{data.repoLink}</a>
-                </div>
-            
+                <Card style={{ padding: '20px', backgroundColor: 'white', borderRadius: '10px', boxShadow: '0 5px 15px rgba(0, 0, 0, 0.15)' }}>
+                    <Heading size={2} style={{ marginBottom: '10px', textAlign: 'center' }}>Bounty</Heading>
+                    <Grid gap={2}>
+                        <Flex style={{ alignItems: 'center' }}>
+                            <Text style={{ marginRight: '10px' }}>Amount: ${data.bounty_amount}</Text>
+                            <Link href={data.repoLink} style={{ marginLeft: '10px' }}>{data.repoLink}</Link>
+                        </Flex>
+                        <Flex style={{ alignItems: 'center' }}>
+                            <Text style={{ marginRight: '10px' }}>Issue Description:</Text>
+                            <Text>{data.issueDescription}</Text>
+                        </Flex>
+                    </Grid>
+                    {user && user.user_id === data.user_id && (
+                        <Button color="blue" onClick={() => navigate(`/bounty/${id}/claims`)} style={{ marginTop: '10px' }}>List claims</Button>
+                    )}
+                    {user && user.user_id !== data.user_id && (
+                        <Button onClick={() => navigate(`/bounty/${id}/add-claim`)} style={{ marginTop: '10px' }}>Add claim</Button>
+                    )}
+                </Card>
             )}
         </div>
     )
 }
 export default BountyPage;
+
+/* 
+
+{
+    "bounty_id": 98,
+    "repoLink": "https://google.com",
+    "issueDescription": "sd",
+    "isApproved": 1,
+    "user_id": "github|58897439",
+    "bounty_amount": 34,
+    "approved_claim_id": null
+}
+
+*/
