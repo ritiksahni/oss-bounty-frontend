@@ -5,11 +5,12 @@ import { Link } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { Grid, Box } from "@radix-ui/themes";
 import { PlusIcon } from '@radix-ui/react-icons';
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import AuthContext from '../contexts/AuthContext';
 
 const Dashboard = () => {    
     const { isAuthenticated, user, setIsAuthenticated, setUser } = useContext(AuthContext);
+    const [redirect, setRedirect] = useState(false);
 
     useEffect(() => {
         const fetchUser = async () => {
@@ -19,6 +20,8 @@ const Dashboard = () => {
                     if(response.data.user !== null){ // If user is not logged in, server responds with { user: null } else { user: { ... } }
                         setUser(response.data.user[0]);
                         setIsAuthenticated(true);
+                    } else {
+                        setRedirect(true);
                     }
                 }
             } catch (error) {
@@ -33,13 +36,17 @@ const Dashboard = () => {
         const res = await axios.get(process.env.EXPRESS_SERVER_URL + "/api/bounties/");
         return res.data;
     }
-
+    
     const { isLoading, error, data } = useQuery({
         queryKey: ['bounty_id'],
         queryFn: getBounties,
         cacheTime: 5000
     });
-
+    
+    if (redirect) {
+        window.open(`${process.env.EXPRESS_SERVER_URL}/api/auth/login`, "_self");
+        return;
+    }
     return (
         <>
             <div className={styles.header}>
