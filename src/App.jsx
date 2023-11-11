@@ -12,6 +12,7 @@ import AddClaimForm from './pages/AddClaimForm.jsx';
 import ListClaims from './pages/ListClaims.jsx';
 import Homepage from './components/Homepage';
 import BountyPage from './components/BountyPage';
+import AuthProvider from './components/AuthProvider.jsx';
 
 function App() {
   const [user, setUser] = useState();
@@ -19,20 +20,24 @@ function App() {
   
   return (
     <AuthContext.Provider value={{ user, setUser, isAuthenticated, setIsAuthenticated }}>
-      <Router>
-        <Layout>
-          <Routes>
-            <Route path="/" element={<Homepage />} />
-            <Route path="/how-it-works" element={<HowItWorks />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/bounty/:id" element={<BountyPage />} />
-            <Route path="/creator" element={<CreatorCard />} />
-            <Route path="/create-bounty" element={<CreateBounty />} />
-            <Route path="/bounty/:id/add-claim" element={<AddClaimForm />} />
-            <Route path="/bounty/:id/claims" element={<ListClaims />} />
-          </Routes>
-        </Layout>
-      </Router>
+      <AuthProvider>
+        {({ isLoading }) => (
+          <Router>
+            <Layout>
+              <Routes>
+                <Route path="/" element={<Homepage />} />
+                <Route path="/how-it-works" element={<HowItWorks />} />
+                <Route path="/dashboard" element={<Dashboard isLoadingUser={isLoading} />} />
+                <Route path="/bounty/:id" element={<BountyPage />} />
+                <Route path="/creator" element={<CreatorCard />} />
+                <Route path="/create-bounty" element={<CreateBounty />} />
+                <Route path="/bounty/:id/add-claim" element={<AddClaimForm />} />
+                <Route path="/bounty/:id/claims" element={<ListClaims />} />
+              </Routes>
+            </Layout>
+          </Router>
+        )}
+      </AuthProvider>
     </AuthContext.Provider>
   );
 }
