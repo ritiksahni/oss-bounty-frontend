@@ -40,7 +40,7 @@ function ListClaims() {
 
       {error && <p>Error: {error.status}</p>}
 
-      {Array.isArray(data) && (
+      {Array.isArray(data) && data.length !== 0 ? (
         <ul
           style={{
             listStyle: 'none',
@@ -72,6 +72,8 @@ function ListClaims() {
             </li>
           ))}
         </ul>
+      ): (
+        <p>No claims yet.</p>
       )}
     </div>
   );
