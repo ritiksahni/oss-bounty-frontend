@@ -2,8 +2,8 @@ import { Link } from 'react-router-dom';
 
 const Homepage = () => {
     return (
-        <div>
-            <div style={{ backgroundColor: '#f2f2f2', padding: '2rem' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', height: '90vh' }}>
+            <div style={{ backgroundColor: '#f2f2f2', padding: '4rem', textAlign: 'center' }}>
                 <h1 style={{ fontSize: '3rem', marginBottom: '1rem' }}>
                     Incentivize Open-Source Contributions
                 </h1>
