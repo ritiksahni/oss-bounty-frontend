@@ -42,8 +42,13 @@ function BountyPage() {
                     {user && user.user_id === data.user_id && (
                         <Button color="blue" onClick={() => navigate(`/bounty/${id}/claims`)} style={{ marginTop: '10px' }}>List claims</Button>
                     )}
-                    {user && user.user_id !== data.user_id && (
+                    
+                    {user && user.user_id !== data.user_id && data.approved_claim_id === null && (
                         <Button onClick={() => navigate(`/bounty/${id}/add-claim`)} style={{ marginTop: '10px' }}>Add claim</Button>
+                    )}
+                    
+                    {data.approved_claim_id !== null && (
+                        <p>A claim has already been approved for this bounty</p>
                     )}
                 </Card>
             )}

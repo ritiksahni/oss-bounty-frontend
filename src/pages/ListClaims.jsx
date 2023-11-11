@@ -1,9 +1,12 @@
 import { useParams } from 'react-router-dom';
+import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
+import ClaimPage from './ClaimPage';
 
 function ListClaims() {
   const { id } = useParams();
+  const [selectedClaim, setSelectedClaim] = useState(null);
 
   async function fetchClaims() {
     const res = await axios.post(`${process.env.EXPRESS_SERVER_URL}/api/list-claims`, { bounty_id: id });
@@ -14,6 +17,10 @@ function ListClaims() {
     queryKey: ['id'],
     queryFn: fetchClaims,
   });
+
+  if(selectedClaim){
+    return <ClaimPage claim={selectedClaim} />
+  }
 
   return (
     <div
@@ -57,7 +64,7 @@ function ListClaims() {
                 textOverflow: 'ellipsis',
               }}
               onClick={() => {
-                // Handle click, e.g., redirect to claim details page
+                setSelectedClaim(claim);
               }}
             >
               <h3 style={{ marginBottom: '8px' }}>User: {claim.claimer_id}</h3>
