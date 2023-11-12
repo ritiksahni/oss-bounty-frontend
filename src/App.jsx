@@ -11,7 +11,7 @@ import CreateBounty from './pages/CreateBountyForm.jsx';
 import AddClaimForm from './pages/AddClaimForm.jsx';
 import ListClaims from './pages/ListClaims.jsx';
 import Homepage from './components/Homepage';
-import BountyPage from './components/BountyPage';
+import BountyPage from './pages/BountyPage';
 import AuthProvider from './components/AuthProvider.jsx';
 
 function App() {
