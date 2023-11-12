@@ -1,5 +1,4 @@
-import { GitHubLogoIcon } from '@radix-ui/react-icons';
-import { TextArea, TextField, Card, Button, Flex, Callout } from '@radix-ui/themes';
+import { TextArea, Card, Button, Flex, Callout } from '@radix-ui/themes';
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
@@ -7,6 +6,7 @@ import axios from 'axios';
 
 const CreateClaim = () => {
     const [claim, setClaim] = useState('');
+    const [error, setError] = useState(null);
     const { id: bounty_id } = useParams();
     
     const handleClaimChange = (event) => {
@@ -56,6 +56,7 @@ const CreateClaim = () => {
                 handleOnSubmitMessage('success');
             }
         } catch (err) {
+            setError(err.response.data.message);
             handleOnSubmitMessage('failure');
         }
     };
@@ -103,7 +104,7 @@ const CreateClaim = () => {
 
             <Callout.Root className="failureCallout" style={{ display: 'none' }} color="red" size="3" role="alert">
                 <Callout.Text>
-                    Claim cannot be created. Please check your inputs and try again.
+                    {error}
                 </Callout.Text>
             </Callout.Root>
         </Flex>
