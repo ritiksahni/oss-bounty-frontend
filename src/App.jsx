@@ -8,7 +8,7 @@ import HowItWorks from './pages/HowItWorks.jsx';
 import Dashboard from './pages/Dashboard.jsx';
 import CreatorCard from './pages/Creator.jsx';
 import CreateBounty from './pages/CreateBountyForm.jsx';
-import AddClaimForm from './pages/AddClaimForm.jsx';
+import CreateClaim from './pages/CreateClaimForm.jsx';
 import ListClaims from './pages/ListClaims.jsx';
 import Homepage from './components/Homepage';
 import BountyPage from './pages/BountyPage';
@@ -32,7 +32,7 @@ function App() {
                 <Route path="/bounty/:id" element={<BountyPage />} />
                 <Route path="/creator" element={<CreatorCard />} />
                 <Route path="/create-bounty" element={<CreateBounty />} />
-                <Route path="/bounty/:id/add-claim" element={<AddClaimForm />} />
+                <Route path="/bounty/:id/add-claim" element={<CreateClaim />} />
                 <Route path="/bounty/:id/claims" element={<ListClaims />} />
               </Routes>
             </Layout>
