@@ -17,9 +17,10 @@ import AuthProvider from './components/AuthProvider.jsx';
 function App() {
   const [user, setUser] = useState();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isError, setIsError] = useState(false);
   
   return (
-    <AuthContext.Provider value={{ user, setUser, isAuthenticated, setIsAuthenticated }}>
+    <AuthContext.Provider value={{ user, setUser, isAuthenticated, setIsAuthenticated, isError, setIsError }}>
       <AuthProvider>
         {({ isLoading }) => (
           <Router>

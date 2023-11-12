@@ -4,7 +4,7 @@ import axios from 'axios';
 import AuthContext from '../contexts/AuthContext';
 
 const AuthProvider = ({ children }) => {
-    const { setIsAuthenticated, setUser } = useContext(AuthContext);
+    const { setIsAuthenticated, setUser, setIsError } = useContext(AuthContext);
 
     const fetchUser = async () => {
         const response = await axios.get(process.env.EXPRESS_SERVER_URL + "/api/auth/user", { withCredentials: true });
@@ -18,8 +18,10 @@ const AuthProvider = ({ children }) => {
                 userData.user_id = `github|` + userData.user_id;
                 setUser(userData);
                 setIsAuthenticated(true);
+            } else {
+                setIsError(true);
             }
-        }
+        },
     });
 
     return children({ isLoading });
