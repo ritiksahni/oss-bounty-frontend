@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useParams, useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import { Card, Text, Heading, Link, Flex, Grid, Button  } from '@radix-ui/themes';
 import AuthContext from '../contexts/AuthContext';
 
@@ -20,7 +20,6 @@ function BountyPage() {
         queryFn: getBountyById,
         cacheTime: 5000
     });
-
     return(
         <div style={{ display: 'flex', justifyContent: 'center' }}>
             {isLoading && <p>Loading...</p>}

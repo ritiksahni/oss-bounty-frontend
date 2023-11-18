@@ -15,7 +15,6 @@ const AuthProvider = ({ children }) => {
         onSuccess: (data) => {
             if(data.user !== null){
                 const userData = data.user[0];
-                userData.user_id = `github|` + userData.user_id;
                 setUser(userData);
                 setIsAuthenticated(true);
             } else {

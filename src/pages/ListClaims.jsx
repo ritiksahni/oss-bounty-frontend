@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import ClaimPage from './ClaimPage';
@@ -7,10 +7,18 @@ import ClaimPage from './ClaimPage';
 function ListClaims() {
   const { id } = useParams();
   const [selectedClaim, setSelectedClaim] = useState(null);
+  const [claimers, setClaimers] = useState({});
 
   async function fetchClaims() {
     const res = await axios.post(`${process.env.EXPRESS_SERVER_URL}/api/list-claims`, { bounty_id: id });
     return res.data;
+  }
+
+  async function fetchUsername(claimerId) {
+    const res = await axios.post(`${process.env.EXPRESS_SERVER_URL}/api/get-claim-creator`, {
+      claimer_id: claimerId,
+    });
+    return res.data.username;
   }
 
   const { isLoading, error, data } = useQuery({
@@ -18,9 +26,22 @@ function ListClaims() {
     queryFn: fetchClaims,
   });
 
-  if(selectedClaim){
-    return <ClaimPage claim={selectedClaim} />
+  useEffect(() => {
+    if (Array.isArray(data)) {
+      data.forEach(async (claim) => {
+        const username = await fetchUsername(claim.claimer_id);
+        setClaimers((prevClaimers) => ({
+          ...prevClaimers,
+          [claim.claimer_id]: username,
+        }));
+      });
+    }
+  }, [data]);
+
+  if (selectedClaim) {
+    return <ClaimPage claim={selectedClaim} creatorUsername={claimers[selectedClaim.claimer_id]} />;
   }
+
 
   return (
     <div
@@ -67,12 +88,12 @@ function ListClaims() {
                 setSelectedClaim(claim);
               }}
             >
-              <h3 style={{ marginBottom: '8px' }}>User: {claim.claimer_id}</h3>
+              <h3 style={{ marginBottom: '8px' }}>Claim Creator: {claimers[claim.claimer_id]}</h3>
               <p style={{ color: '#555', overflow: 'hidden', textOverflow: 'ellipsis' }}>{claim.description}</p>
             </li>
           ))}
         </ul>
-      ): (
+      ) : (
         <p>No claims yet.</p>
       )}
     </div>
